@@ -4,6 +4,8 @@
   "description": "Esercizio di oggi: express-blog-api-crud (part 1)",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
+    "watch": "node --watch app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
