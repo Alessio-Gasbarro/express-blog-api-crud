@@ -123,16 +123,18 @@ const modify = (req, res) => {
 const destroy = (req, res) => {
     const id = parseInt(req.params.id);
     const post = posts.find(element => element.id === id);
+
     if(!post){
         res.status(404).json({
             success: false,
-            error: '404 NOT FOUND',
+            error: '404 Not Found',
             message: `Post with id ${id} not found`
         });
     }
     else{
         const index = posts.indexOf(post);
         posts.splice(index, 1);
+        
         console.log(posts);
         res.sendStatus(204);
     }
