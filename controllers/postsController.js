@@ -96,7 +96,27 @@ const update = (req, res) => {
 //MODIFY
 const modify = (req, res) => {
     const id = parseInt(req.params.id);
-    res.send(`Post con id ${id} modificato con successo.`);
+    const post = posts.find(element => element.id === id);
+    if(!post){
+        return res.status(401).json({
+            success: false,
+            error: '404 Not Found',
+            message: `Post with id ${id} not found!`
+        });
+    }
+
+    const {title, content, image, tags} = req.body;
+
+    if(title) post.title = title;
+    if(content) post.content = content;
+    if(image) post.image = image;
+    if(tags) post.tags = tags;
+
+    console.log(posts);
+    res.status(200).json({
+        success: true,
+        data: post
+    });
 }
 
 //DELETE
