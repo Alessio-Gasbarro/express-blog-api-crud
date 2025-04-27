@@ -53,25 +53,20 @@ const show = (req, res) => {
 
 //STORE
 const store = (req, res) => {
-    let id = 1;
-    while(posts.find(element => element.id === id)){
-        id++;
-    }
-    const post = {
-        id: id,
-        title: req.query.title,
-        content: 'Descrizione random bla bla bla',
-        image: '/placeholder.png',
-        tags: ['placeholder']
-    };
-    posts.push(post);
-    posts.sort((a, b) => a.id - b.id);
+    const id = posts[posts.length - 1].id + 1;
+
+    const { title, content, image, tags } = req.body;
+
+    const newPost = { id, title, content, image, tags};
+
+    post.push(newPost);
+
     console.log(posts);
     res.status(201).json({
         success: true,
-        data: post
-    });
-};
+        data: newPost
+    })
+}
 
 //UPDATE
 const update = (req, res) => {
