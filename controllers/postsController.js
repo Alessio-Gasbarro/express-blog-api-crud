@@ -71,8 +71,27 @@ const store = (req, res) => {
 //UPDATE
 const update = (req, res) => {
     const id = parseInt(req.params.id);
-    res.send(`Post con id ${id} aggiornato con successo.`);
-}
+    const post = posts.find(element => element.id === id);
+    if(!post){
+        return res.status(404).json({
+            success: false,
+            error: '404 NOT FOUND',
+            message: `Post with id ${id} not found!`
+        });
+    }
+
+    const {title, content, image, tags} = req.body;
+    post.title = title;
+    post.content = content;
+    post.image = image;
+    post.tags = tags;
+
+    console.log(posts);
+    res.status(200).json({
+        success: true,
+        data: post
+    });
+};
 
 //MODIFY
 const modify = (req, res) => {
