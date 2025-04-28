@@ -5,6 +5,9 @@ const port = 3000;
 
 app.use(express.static('public'));
 
+const notFound = require('./middlewares/notFound.js');
+app.use(notFound);
+
 //Routing
 const postsRouter = require('./routers/posts.js');
 app.use('/posts', postsRouter);
