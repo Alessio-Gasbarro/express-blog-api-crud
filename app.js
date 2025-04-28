@@ -8,6 +8,9 @@ app.use(express.static('public'));
 const notFound = require('./middlewares/notFound.js');
 app.use(notFound);
 
+const errorsHandler = require('./middlewares/errorsHandler.js');
+app.use(errorsHandler);
+
 //Routing
 const postsRouter = require('./routers/posts.js');
 app.use('/posts', postsRouter);
